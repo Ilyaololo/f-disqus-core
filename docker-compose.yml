@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  f-disqus-db:
+    container_name: f-disqus-db
+    image: postgres:11-alpine
+    ports:
+      - 3746:5432
+    environment:
+      POSTGRES_DB: f-disqus
+      POSTGRES_USER: pupkin
+      POSTGRES_PASSWORD: test
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
